@@ -1,3 +1,5 @@
+package edu.cscc.topics;
+
 public class TraditionalPerson {
     private FluentPerson.Gender gender;
     private int age;
@@ -33,7 +35,7 @@ public class TraditionalPerson {
 
     @Override
     public String toString() {
-        return "TraditionalPerson{" +
+        return "edu.cscc.topics.TraditionalPerson{" +
                 "gender=" + gender +
                 ", age=" + age +
                 ", height=" + height +
