@@ -1,27 +1,36 @@
 package edu.cscc.topics;
 
-public class TraditionalPerson {
-    private FluentPerson.Gender gender;
+public class TraditionalPerson implements Person {
+    private Gender gender;
     private int age;
     private int height;
 
-    public TraditionalPerson(FluentPerson.Gender gender, int age, int height) {
+    // standard no-arg constructor
+    public TraditionalPerson() {
+        // nothing to do here
+    }
+
+    // typical usage pattern - have all fields defined ahead of time
+    public TraditionalPerson(Gender gender, int age, int height) {
         this.gender = gender;
         this.age = age;
         this.height = height;
     }
 
-    public TraditionalPerson(int age, int height) {
+    // Why can you create a person that doesn't have a Gender?  (from a programmer's standpoint
+    public TraditionalPerson(int height, int age) {
         this.age = age;
         this.height = height;
     }
 
-    public TraditionalPerson(FluentPerson.Gender gender, int age) {
+    // Why can you create a person that doesn't have a height?  (from a programmer's standpoint
+    public TraditionalPerson(Gender gender, int age) {
         this.gender = gender;
         this.age = age;
     }
 
-    public void setGender(FluentPerson.Gender gender) {
+    // Frequently we want "domain" objects to be read-only...
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -40,5 +49,17 @@ public class TraditionalPerson {
                 ", age=" + age +
                 ", height=" + height +
                 '}';
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 }

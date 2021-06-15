@@ -1,23 +1,41 @@
 package edu.cscc.topics;
 
-public class FluentPerson {
+public class FluentPerson implements Person {
 
     private Gender gender;
     private int age;
     private int height;
 
+    // Make the default constructor private.  This means there's no way to new FluentPerson(...)
+    // Which means we explicitly control creation of the FluentPerson objects.
     private FluentPerson() {
     }
 
-    public enum Gender {
-        FEMALE,
-        MALE
+    public int getHeight() {
+        return height;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    // Frequently fluent interfaces will have a static method on the class to get you started.  Here's one:
     public static InitialPersonBuilder newPerson(Gender gender) {
         return new Builder(gender);
     }
 
+    // Here's a couple more:
+    public static InitialPersonBuilder female() { return new Builder(Gender.FEMALE); }
+    public static InitialPersonBuilder male() { return new Builder(Gender.MALE); }
 
+
+    // This is the guts.  You can ignore the implementation.  Just know that there's an internal builder class
+    // that moves you through stages of creation by returning an interface with a limited set of
+    // methods that can be called
     public static class Builder implements InitialPersonBuilder, PersonWithAge, PersonWithHeight {
         private FluentPerson person = new FluentPerson();
 
